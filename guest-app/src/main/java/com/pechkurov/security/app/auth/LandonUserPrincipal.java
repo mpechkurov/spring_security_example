@@ -2,6 +2,9 @@ package com.pechkurov.security.app.auth;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,15 +12,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class LandonUserPrincipal implements UserDetails {
     private User user;
+    private List<AuthGroup> authGroups;
 
-    public LandonUserPrincipal(User user) {
+    public LandonUserPrincipal(User user, List<AuthGroup> authGroups) {
         super();
         this.user = user;
+        this.authGroups = authGroups;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        if (null == authGroups) {
+            return Collections.emptySet();
+        }
+        Set<SimpleGrantedAuthority> grantedAuthority = new HashSet<>();
+        authGroups.forEach(group -> {
+            grantedAuthority.add(new SimpleGrantedAuthority(group.getAuthGroup()));
+        });
+        return grantedAuthority;
     }
 
     @Override
