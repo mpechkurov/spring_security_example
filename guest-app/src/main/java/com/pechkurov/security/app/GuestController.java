@@ -37,6 +37,11 @@ public class GuestController {
         return "index";
     }
 
+    @GetMapping(value = "/login")
+    public String getLoginPage(Model model) {
+        return "login";
+    }
+
     @GetMapping(value = "/guests")
     @PreAuthorize("hasRole('ROLE_USER')")
     public String getGuests(Model model) {
