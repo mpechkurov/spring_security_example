@@ -1,0 +1,51 @@
+dn: dc=pechkurov,dc=com
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: pechkurov
+o: MyPechkurov
+
+dn: ou=people,dc=pechkurov,dc=com
+objectclass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=pechkurov,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: uid=mpechkurov,ou=people,dc=pechkurov,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: My Pechkurov
+sn: Pechkurov
+givenName: My
+mail: pechkurov@pechkurov.com
+uid: mpechkurov
+userPassword: {SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=
+
+dn: uid=jdoe,ou=people,dc=pechkurov,dc=com
+objectClass: inetOrgPerson
+cn: John Doe
+sn: Doe
+givenName: John
+mail: jdoe@example.com
+uid: jdoe
+userPassword: {SHA}iEPX+SQWIR3p67lj/0zigSWTKHg=
+
+dn: cn=admin,ou=groups,dc=pechkurov,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: admins
+uniqueMember: uid=mpechkurov,ou=people,dc=pechkurov,dc=com
+
+dn: cn=user,ou=groups,dc=pechkurov,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: users
+uniqueMember: uid=mpechkurov,ou=people,dc=pechkurov,dc=com
+uniqueMember: uid=jdoe,ou=people,dc=pechkurov,dc=com
+
