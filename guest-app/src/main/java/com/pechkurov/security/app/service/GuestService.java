@@ -20,7 +20,12 @@ public class GuestService {
     @Value("${landon.guest.service.url}")
     private String guestServiceUrl;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
+
+    public GuestService(RestTemplate restTemplate) {
+        super();
+        this.restTemplate = restTemplate;
+    }
 
     public List<Guest> getAllGuests() {
         String url = guestServiceUrl + GUESTS;
